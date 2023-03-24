@@ -10,6 +10,8 @@ int main(){
 	printf("P3\n%d %d\n255\n", image_width, image_height);
 	
 	for(int j = image_height - 1; j >= 0; --j){
+		fprintf(stderr, "\rScanlines remaining: %d", j);
+		fflush(stderr);
 		for(int i = 0; i < image_width; ++i){
 			double r = (double)i / ((double)image_width-1);
 			double g = (double)j / ((double)image_height-1);
