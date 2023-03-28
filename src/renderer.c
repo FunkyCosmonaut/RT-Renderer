@@ -31,7 +31,10 @@ int main(){
     vec3 b = {1.0, 1.0, 1.0};
 
     vec3 c = vadd(a,b);
-    printf("%f %f %f\n", c.x, c.y, c.z);
+    a = vmul(c, 3);
+    const double x = vdot(a,c);
+    printf("%f %f %f %f\n", c.x, c.y, c.z, x);
+
 
 
 
