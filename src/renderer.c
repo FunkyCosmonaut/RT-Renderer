@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "vec3.h"
 
 //image resolution
 const int image_width = 256;
@@ -27,6 +27,11 @@ int main(){
 
 		}
 	}
+    vec3 a = {1.0, 1.0, 1.0};
+    vec3 b = {1.0, 1.0, 1.0};
+
+    vec3 c = vadd(a,b);
+    printf("%f %f %f\n", c.x, c.y, c.z);
 
 
 
@@ -34,3 +39,4 @@ int main(){
 	return 0;
 }
 
+//int frender(int image_width, image_height){} //For future function
