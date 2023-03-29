@@ -1,2 +1,1 @@
-Working through Raytracing in a weekend, this is all implemented in C, 
-File outputs to ppm
+Raytracer written in C, future plans are to port this to the Nintendo 64 platform once I get my hands on a development kit.

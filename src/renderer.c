@@ -1,4 +1,5 @@
 #include <stdio.h>
+//#include "color.h"
 
 int frender(int image_width, int image_height){
 
