@@ -1,4 +1,5 @@
 #include <stdio.h>
+//#include <math.h>
 #include "renderer.h"
 #include "vec3.h"
 
