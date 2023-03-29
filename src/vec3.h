@@ -1,6 +1,7 @@
-#include <math.h>
+
 #ifndef VEC3_H
 #define VEC3_H
+#include <math.h>
 
 
 
@@ -43,12 +44,15 @@ vec3 vcross(vec3 u, vec3 v){
 double vmag(vec3 v){
     double result = sqrt(pow(v.x, 2.0) + pow(v.y, 2.0) + pow(v.z, 2.0));
     return result;
-
 }
+
 vec3 vunit(vec3 v){
     double vm = vmag(v);
     vec3 result = {v.x/vm, v.y/vm, v.z/vm};
     return result;
 }
+
+typedef vec3 color;
+typedef vec3 point3;
 
 #endif
