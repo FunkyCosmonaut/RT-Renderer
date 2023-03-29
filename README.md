@@ -1,1 +1,1 @@
-Raytracer written in C, future plans are to port this to the Nintendo 64 platform once I get my hands on a development kit.
+Raytracer written in C, future plans are to port this to the Nintendo 64 platform once I get my hands on a development kit, outputs to ppm.
