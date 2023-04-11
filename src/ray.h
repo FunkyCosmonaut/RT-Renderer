@@ -12,6 +12,7 @@ typedef struct {
 point3 origin(Ray ray);
 point3 at(double t, Ray ray);
 vec3 direction(Ray ray);
+color ray_color(const Ray ray);
 
 
 #endif

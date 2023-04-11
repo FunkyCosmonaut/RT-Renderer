@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "color.h"
+#include "ray.h"
 #include "vec3.h"
 
 int frender(){
@@ -29,7 +30,12 @@ int frender(){
         fprintf(stderr, "\rScanlines remaining: %d", j);
         fflush(stderr);
         for(int i = 0; i < image_width; ++i){
-            color pixel_color = {(double)i/(image_width-1), (double)j/(image_height-1), 0.25};
+            double u = (double)i / (image_width-1);
+            double v = (double)j / (image_height-1);
+            Ray r;
+            r.origin = origin;
+            r.direction = vsub(vadd(vadd(lower_left_corner, vmul( horizontal, u)), vmul(vertical,v)), origin);
+            color pixel_color = ray_color(r);
             write_color((stdout), pixel_color);
             }
     }
