@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include "color.h"
 
 int frender(int image_width, int image_height){
@@ -10,11 +10,18 @@ int frender(int image_width, int image_height){
         fprintf(stderr, "\rScanlines remaining: %d", j);
         fflush(stderr);
         for(int i = 0; i < image_width; ++i){
-            color pixel_color = {(double)i/(image_width-1), (double)j/(image_height-1), 0.25};
-            write_color((stdout), pixel_color);
+            double r = (double)i / ((double)image_width-1);
+            double g = (double)j / ((double)image_height-1);
+            double b = 0.25;
 
+            int ir = (int)(255.999*r);
+            int ig = (int)(255.999*g);
+            int ib = (int)(255.999*b);
+
+
+            printf("%d %d %d\n",ir,ig,ib );
             }
     }
-    fprintf(stderr, "\nDone.\n");
     return 0;
 }
+*/
