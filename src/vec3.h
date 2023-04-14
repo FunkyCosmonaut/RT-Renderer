@@ -2,6 +2,7 @@
 #ifndef VEC3_H
 #define VEC3_H
 //#include <math.h>
+#include <stdio.h>
 
 
 
@@ -13,6 +14,7 @@ typedef struct {
 
 
 //Vector operations for vec3
+void vec3_out(vec3 v, FILE* out);
 vec3 vadd(vec3 a, vec3 b);
 vec3 vsub(vec3 a, vec3 b);
 vec3 vmul(vec3 a, const double b);

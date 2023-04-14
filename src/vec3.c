@@ -2,6 +2,9 @@
 #include <math.h>
 
 //Vector operations for vec3
+void vec3_out(vec3 v, FILE* out){
+    fprintf(out, "%f %f %f", v.x, v.y, v.z);
+}
 vec3 vadd(vec3 a, vec3 b){
     vec3 result = {a.x + b.x, a.y + b.y, a.z + b.z};
     return result;
@@ -22,7 +25,7 @@ vec3 vdiv(vec3 a, const double b){
 }
 
 const double vdot(vec3 u, vec3 v){
-    return u.x * v.x + u.y + v.y * u.z + v.z;
+    return u.x * v.x + u.y * v.y + u.z * v.z;
 }
 
 vec3 vcross(vec3 u, vec3 v){
