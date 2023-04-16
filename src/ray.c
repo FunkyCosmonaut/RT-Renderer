@@ -32,16 +32,18 @@ double hit_sphere(const point3 center, double radius, const Ray r)
 {
     vec3 oc = vsub(r.origin, center);
     double a = vdot(r.direction, r.direction);
-    double b = 2.0 * vdot(oc, r.direction);
+    //double b = 2.0 * vdot(oc, r.direction);
+    double half_b = vdot(oc, r.direction);
     double c = vdot(oc,oc) - radius*radius;
-    double discriminant = (b*b) - (4.0*a*c);
+    //vdot(a,a) can be replaced by a new function
+    double discriminant = (half_b*half_b) - (a*c);
     if (discriminant < 0)
     {
         return -1.0;
     }
     else
     {
-        return(-b - sqrt(discriminant)) / (2.0*a);
+        return(-half_b - sqrt(discriminant)) / (a);
     }
 }
 
