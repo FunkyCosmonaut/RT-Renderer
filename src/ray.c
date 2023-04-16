@@ -28,7 +28,7 @@ color ray_color(const Ray ray)
   return vadd(vmul((color){1.0,1.0,1.0},(1.0 - t)), vmul((color){0.5,0.7,1.0}, t));
 }
 
-bool hit_sphere(const point3 center, double radius, const Ray r)
+double hit_sphere(const point3 center, double radius, const Ray r)
 {
     vec3 oc = vsub(r.origin, center);
     double a = vdot(r.direction, r.direction);

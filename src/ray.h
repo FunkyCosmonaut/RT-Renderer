@@ -10,7 +10,7 @@ typedef struct {
     vec3 direction;
 } Ray;
 
-bool hit_sphere(const point3 center, double radius, const Ray r);
+double hit_sphere(const point3 center, double radius, const Ray r);
 point3 origin(Ray ray);
 point3 at(double t, Ray ray);
 vec3 direction(Ray ray);
