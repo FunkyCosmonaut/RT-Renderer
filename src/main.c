@@ -6,7 +6,8 @@
 //const int image_width = 256;
 //const int image_height = 256;
 
-int main(){
+int main()
+{
 
 	//printf("P3\n%d %d\n255\n", image_width, image_height);
 	frender();
