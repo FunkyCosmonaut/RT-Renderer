@@ -47,4 +47,9 @@ double hit_sphere(const point3 center, double radius, const Ray r)
     }
 }
 
+/*float sphere(vec3 center, float radius, vec3 point){  
+    float vec3
+}*/
+
 //note that for discriminants of 0 we can signify an edge.
+//todo change functions to pass pointers to functions instead
