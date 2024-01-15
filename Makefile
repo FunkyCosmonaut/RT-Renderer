@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Werror -lm
+CFLAGS = -Wall -lm
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
@@ -23,3 +23,9 @@ run: $(BIN_DIR)/$(TARGET)
 
 clean:
 	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/$(TARGET) image.ppm
+
+render:
+	./$(BIN_DIR)/Render >> $(BIN_DIR)/image.ppm
+
+show:
+	feh ./$(BIN_DIR)/image.ppm
