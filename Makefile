@@ -22,7 +22,7 @@ run: $(BIN_DIR)/$(TARGET)
 	./$(BIN_DIR)/$(TARGET)
 
 clean:
-	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/$(TARGET) image.ppm
+	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/$(TARGET) $(BIN_DIR)/image.ppm
 
 render:
 	./$(BIN_DIR)/Render >> $(BIN_DIR)/image.ppm
