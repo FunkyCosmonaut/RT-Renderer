@@ -1,6 +1,7 @@
 #include "color.h"
 #include "vec3.h"
 #include "ray.h"
+#include "window.h"
 
 #include <iostream>
 
@@ -91,6 +92,7 @@ int main() {
     }
 
     std::clog << "\rDone.               \n";
+    vktest();
 //Apparently std::clog is stderr without buffering.
 }
 
