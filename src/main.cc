@@ -92,7 +92,7 @@ int main() {
     }
 
     std::clog << "\rDone.               \n";
-    vktest();
+    initWindow();
 //Apparently std::clog is stderr without buffering.
 }
 

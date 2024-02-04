@@ -1,6 +1,12 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-int vktest();
+#include <cstdint>
+
+int initWindow();
+
+
+extern const uint32_t           WIDTH;
+extern const uint32_t           HEIGHT;
 
 #endif
