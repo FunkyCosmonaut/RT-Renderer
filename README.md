@@ -1,1 +1,1 @@
-Raytracer written in C, future plans are to port this to the Nintendo 64 platform once I get my hands on a development kit, outputs to ppm.
+Raytracing in a weekend, Vulkan integration planned, MPI version to run on clusters, OpenGL, graphics from first principles, currently static, real-time planned.

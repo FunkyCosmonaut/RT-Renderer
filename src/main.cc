@@ -70,7 +70,6 @@ int main() {
                                     vec3(0, 0, focal_length)    -
                                     viewport_u/2                -
                                     viewport_v/2;
-    std::clog << viewport_upper_left << std::endl;
     auto pixel00_loc        =       viewport_upper_left         +
                                     0.5 * (pixel_delta_u + pixel_delta_v);
                                     
