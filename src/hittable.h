@@ -21,10 +21,9 @@ class hit_record
 class hittable {
     public:
         virtual ~hittable() = default;
-        virtual bool hit(const ray& r, double ray_tmin, double ray_tmax.
-                hit_record& rec) const = 0;
+        virtual bool hit(const ray& r, double ray_tmin, double ray_tmax, hit_record& rec) const = 0;
         
-        bool hit(const ray&, double ray_tmin, double ray_tmax, hitrecord& rec) const
+      /*  bool hit(const ray&, double ray_tmin, double ray_tmax, hit_record& rec) const
         {
             rec.t = root;
             rec.p = r.at(rec.t);
@@ -33,7 +32,7 @@ class hittable {
 
             return true;
 
-        }
+        }*/
 };
 
 #endif
