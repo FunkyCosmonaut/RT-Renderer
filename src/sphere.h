@@ -12,16 +12,16 @@ class sphere : public hittable
         bool hit(const ray& r, interval ray_t, hit_record& rec) const override
         {
             vec3 oc = r.origin() - center;
-            auto a = r.direction().length_squared();
-            auto half_b = dot(oc, r.direction());
-            auto c = oc.length_squared() - radius*radius;
+            double a = r.direction().length_squared();
+            double half_b = dot(oc, r.direction());
+            double c = oc.length_squared() - radius*radius;
 
-            auto discriminant = half_b*half_b - a*c;
+            double discriminant = half_b*half_b - a*c;
             if (discriminant < 0) return false;
-            auto sqrtd = sqrt(discriminant);
+            double sqrtd = sqrt(discriminant);
 
             // Find the nearest root
-            auto root = (-half_b - sqrtd) / a;
+            double root = (-half_b - sqrtd) / a;
             if (!ray_t.surrounds(root)) 
             {
                 root = -(half_b + sqrtd) / a;
