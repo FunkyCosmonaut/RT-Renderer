@@ -27,9 +27,9 @@ int initWindow() {
 
     printf("%u extensions supported\n", extensionCount);
 
-    glm::mat4 matrix;
-    glm::vec4 vec;
-    glm::vec4 test = matrix * vec;
+    //glm::mat4 matrix;
+    //glm::vec4 vec;
+    //glm::vec4 test = matrix * vec;
     //linear algebra refresher, mat * vec = vec
 
     while(!glfwWindowShouldClose(window))
