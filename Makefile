@@ -1,5 +1,6 @@
 CC = g++
 CFLAGS = -g -Wall -lm -lglfw -lvulkan -lpthread -lX11 -lXrandr -lXi
+
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin

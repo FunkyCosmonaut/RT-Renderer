@@ -11,8 +11,9 @@
 class camera
 {
     public:
-        double  aspect_ratio    = 4.0 / 3.0;
-        int     image_width     = 640;
+        double  aspect_ratio        = 4.0 / 3.0;
+        int     image_width         = 640;
+        int     samples_per_pixel   = 10;
 
         void render(const hittable& world) 
         {
@@ -25,12 +26,22 @@ class camera
                 std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
                 for (int i = 0; i < image_width; ++i)
                 {
+                    color pixel_color(0,0,0);
+                    for (int sample = 0; sample < samples_per_pixel; ++sample)
+                    {
+                        ray r = get_ray(i, j);
+                        pixel_color += ray_color(r, world);
+                    }
+
+                    write_color(std::cout, pixel_color, samples_per_pixel);
+                    /*
                     vec3 pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
                     vec3 ray_direction = pixel_center - center;
                     ray r(center, ray_direction);
 
                     color pixel_color = ray_color(r, world);
                     write_color(std::cout, pixel_color);
+                    */
                 }
             }
             
@@ -82,6 +93,24 @@ class camera
             vec3 unit_direction = unit_vector(r.direction());
             double a = 0.5*(unit_direction.y() + 1.0);
             return (1.0-a)*color(1.0,1.0,1.0) + a*color(0.5, 0.7, 1.0);
+        }
+
+        ray get_ray(int i, int j)
+        {
+            vec3 pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
+            vec3 pixel_sample = pixel_center + pixel_sample_square();
+
+            vec3 ray_origin = center;
+            vec3 ray_direction = pixel_sample - ray_origin;
+
+            return ray(ray_origin, ray_direction);
+        }
+
+        vec3 pixel_sample_square() const
+        {
+            double px = -0.5 + random_double();
+            double py = -0.5 + random_double();
+            return (px * pixel_delta_u) + (py * pixel_delta_v);
         }
 
 };
