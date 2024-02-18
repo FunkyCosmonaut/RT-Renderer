@@ -5,8 +5,6 @@
 
 #include <iostream>
 
-#define COLOR_32    32
-#define COLOR_256   256
 
 using color = vec3;
 /*
