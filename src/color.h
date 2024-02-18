@@ -5,6 +5,9 @@
 
 #include <iostream>
 
+#define COLOR_32    32
+#define COLOR_256   256
+
 using color = vec3;
 /*
 void write_color(std::ostream &out, color pixel_color)

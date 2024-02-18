@@ -34,14 +34,6 @@ class camera
                     }
 
                     write_color(std::cout, pixel_color, samples_per_pixel);
-                    /*
-                    vec3 pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
-                    vec3 ray_direction = pixel_center - center;
-                    ray r(center, ray_direction);
-
-                    color pixel_color = ray_color(r, world);
-                    write_color(std::cout, pixel_color);
-                    */
                 }
             }
             
@@ -87,7 +79,8 @@ class camera
             
             if(world.hit(r, interval(0,infinity), rec))
             {
-                return 0.5 * (rec.normal + color (1,1,1));
+                vec3 direction = random_on_hemisphere(rec.normal);
+                return 0.5 * ray_color(ray(rec.p, direction), world);
             }
 
             vec3 unit_direction = unit_vector(r.direction());
