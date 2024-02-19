@@ -6,6 +6,9 @@
 
 #include "window.h"
 
+int colormode = 256;
+
+
 int main(void) 
 {
     hittable_list world;
@@ -15,11 +18,11 @@ int main(void)
     camera cam;
 
     cam.aspect_ratio = 4.0 / 3.0;
-    cam.image_width = 640;
+    cam.image_width = 1024;
     cam.samples_per_pixel = 100;
     cam.max_depth = 50;
 
-    cam.render(world);
+    cam.render(world, colormode);
 
 }
 

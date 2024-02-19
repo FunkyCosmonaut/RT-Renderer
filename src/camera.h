@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+
 class camera
 {
     public:
@@ -16,11 +17,12 @@ class camera
         int     samples_per_pixel   = 10; //random samples per pixel, we use this for anti aliasing
         int     max_depth           = 10; //number of ray bounces allowed
 
-        void render(const hittable& world) 
+
+        void render(const hittable& world, int colormode) 
         {
             initialize();
 
-            std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+            std::cout << "P3\n" << image_width << ' ' << image_height << "\n" << colormode-1 << "\n";
 
             for (int j = 0; j < image_height; ++j)
             {
@@ -34,10 +36,9 @@ class camera
                         pixel_color += ray_color(r, max_depth, world);
                     }
 
-                    write_color(std::cout, pixel_color, samples_per_pixel);
+                    write_color(std::cout, pixel_color, samples_per_pixel, colormode);
                 }
-            }
-            
+            }   
             std::clog << "\rDone.                      \n";
         }
 
@@ -47,6 +48,7 @@ class camera
         point3  pixel00_loc;
         vec3    pixel_delta_u;
         vec3    pixel_delta_v;
+
 
         void initialize()
         {
@@ -74,6 +76,7 @@ class camera
             pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
         }
 
+
         color ray_color(const ray& r, int depth, const hittable& world) const
         {
             hit_record rec;
@@ -81,9 +84,10 @@ class camera
             if(depth <= 0)
                 return color(0, 0, 0);
 
-            if(world.hit(r, interval(0,infinity), rec))
+            if(world.hit(r, interval(0.001,infinity), rec))
             {
-                vec3 direction = random_on_hemisphere(rec.normal);
+                // vec3 direction = random_on_hemisphere(rec.normal);
+                vec3 direction = rec.normal + random_unit_vector();
                 return 0.5 * ray_color(ray(rec.p, direction), depth-1, world);
             }
 
@@ -91,6 +95,7 @@ class camera
             double a = 0.5*(unit_direction.y() + 1.0);
             return (1.0-a)*color(1.0,1.0,1.0) + a*color(0.5, 0.7, 1.0);
         }
+
 
         ray get_ray(int i, int j)
         {
@@ -102,6 +107,7 @@ class camera
 
             return ray(ray_origin, ray_direction);
         }
+
 
         vec3 pixel_sample_square() const
         {
