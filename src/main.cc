@@ -18,7 +18,7 @@ int main(void)
     camera cam;
 
     cam.aspect_ratio = 4.0 / 3.0;
-    cam.image_width = 1024;
+    cam.image_width = 640;
     cam.samples_per_pixel = 100;
     cam.max_depth = 50;
 
