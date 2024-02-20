@@ -4,7 +4,6 @@
 #include "hittable_list.h"
 #include "sphere.h"
 
-#include "window.h"
 
 int colormode = 256;
 

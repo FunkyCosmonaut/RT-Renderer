@@ -1,6 +1,6 @@
 CC = g++
-CFLAGS = -g -Wall -lm -lglfw -lvulkan -lpthread -lX11 -lXrandr -lXi
-
+UNIXFLAGS = -g -Wall -std=c++20
+MACFLAGS = -g -Wall -lm -lpthread
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
@@ -14,10 +14,10 @@ OBJS = $(patsubst $(SRC_DIR)/%.cc,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(BIN_DIR)/$(TARGET)
 
 $(BIN_DIR)/$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(UNIXFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cc
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(UNIXFLAGS) -c $< -o $@
 
 run: $(BIN_DIR)/$(TARGET)
 	./$(BIN_DIR)/$(TARGET)
