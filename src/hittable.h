@@ -5,6 +5,9 @@
 
 #include "utils.h"
 
+class material;
+
+
 class hit_record 
 {
     public:
