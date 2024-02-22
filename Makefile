@@ -1,5 +1,5 @@
 CC = g++
-UNIXFLAGS = -g -Wall -std=c++20
+UNIXFLAGS = -g -Wall -std=c++17
 MACFLAGS = -g -Wall -lm -lpthread
 SRC_DIR = src
 OBJ_DIR = obj
