@@ -24,15 +24,16 @@ int main(void)
 
     world.add(make_shared<sphere>(point3( 0.0,  -100.5, -1.0),  100.0,  material_ground));
     world.add(make_shared<sphere>(point3( 0.0,     0.0, -1.0),    0.5,  material_center));
-    world.add(make_shared<sphere>(point3(-1.0,     0.0, -1.0),    -0.4,  material_left));
+    world.add(make_shared<sphere>(point3(-1.0,     0.0, -1.0),    0.5,  material_left));
+    world.add(make_shared<sphere>(point3(-1.0,     0.0, -1.0),   -0.4,  material_left));
     world.add(make_shared<sphere>(point3( 1.0,     0.0, -1.0),    0.5,  material_right));
 
     camera cam;
 
     cam.aspect_ratio = 4.0 / 3.0;
     cam.image_width = 640;
-    cam.samples_per_pixel = 100;
-    cam.max_depth = 50;
+    cam.samples_per_pixel = 50;
+    cam.max_depth = 10;
 
     cam.render(world, colormode);
 
