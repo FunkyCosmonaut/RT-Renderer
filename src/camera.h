@@ -18,6 +18,7 @@ class camera
         int     samples_per_pixel   = 10; //random samples per pixel, we use this for anti aliasing
         int     max_depth           = 10; //number of ray bounces allowed
 
+        double vfov = 90;
 
         void render(const hittable& world, int colormode) 
         {
@@ -58,11 +59,22 @@ class camera
             // top is an if statement, c++ reminder
             
             center = point3(0, 0, 0);
-
+/*
             // Determine viewport dimensions.
             double focal_length = 1.0;
             double viewport_height = 2.0;
             double viewport_width = viewport_height * (static_cast<double>(image_width)/image_height);
+            // Calculate the vectors across the horizontal and down the vertical viewport edges
+            vec3 viewport_u = vec3(viewport_width, 0, 0);
+            vec3 viewport_v = vec3(0, -viewport_height, 0);
+  */
+
+            double focal_length = 1.0;
+            double theta = degrees_to_radians(vfov);
+            double h = tan(theta/2);
+            double viewport_height = 2 * h * focal_length;
+            double viewport_width = viewport_height * (static_cast<double>(image_width)/image_height);
+            
             // Calculate the vectors across the horizontal and down the vertical viewport edges
             vec3 viewport_u = vec3(viewport_width, 0, 0);
             vec3 viewport_v = vec3(0, -viewport_height, 0);
