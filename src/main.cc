@@ -7,7 +7,7 @@
 #include "sphere.h"
 
 
-int colormode = 16;
+int colormode = 256;
 
 
 int main(void) 
@@ -29,7 +29,10 @@ int main(void)
     cam.samples_per_pixel = 50;
     cam.max_depth = 5;
 
-    cam.vfov = 120;
+    cam.vfov        = 120;
+    cam.lookfrom    = point3(-2, 2, 1);
+    cam.lookat      = point3(0, 0, -1);
+    cam.vup         = vec3(0, 1, 0);
     cam.render(world, colormode);
 
 }
