@@ -1,6 +1,13 @@
-CC = g++
-UNIXFLAGS = -g -Wall -std=c++17
-MACFLAGS = -g -Wall -lm -lpthread
+ifeq ($(OS), Windows_NT)
+	CC = mvsc
+	CFLAGS = -g -Wall -std=c++17
+	OUTPUT = "Windows compilation"
+else
+	CC = g++
+	CFLAGS = -g -Wall -std=c++17
+	OUTPUT = "Mac/Unix compilation"
+endif
+
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
@@ -14,10 +21,11 @@ OBJS = $(patsubst $(SRC_DIR)/%.cc,$(OBJ_DIR)/%.o,$(SRCS))
 all: $(BIN_DIR)/$(TARGET)
 
 $(BIN_DIR)/$(TARGET): $(OBJS)
-	$(CC) $(UNIXFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
+	@echo $(OUTPUT)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cc
-	$(CC) $(UNIXFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(BIN_DIR)/$(TARGET)
 	./$(BIN_DIR)/$(TARGET)

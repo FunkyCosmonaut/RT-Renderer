@@ -23,6 +23,10 @@ class camera
         point3   lookat               =   point3(0, 0, 0);  // Looking at 0, 0, 0
         vec3     vup                  =   vec3(0, 1, 0);    // Camera-relative up direction
 
+        double defocus_angle    = 0;
+        double focus_dist       = 10;
+
+
         void render(const hittable& world, int colormode) 
         {
             initialize();
@@ -54,6 +58,8 @@ class camera
         vec3    pixel_delta_u;
         vec3    pixel_delta_v;
         vec3    u, v, w;
+        vec3    defocus_disk_u;
+        vec3    defocus_disk_v;
 
 
         void initialize()
