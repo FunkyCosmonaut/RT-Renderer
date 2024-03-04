@@ -79,10 +79,10 @@ class camera
             vec3 viewport_v = vec3(0, -viewport_height, 0);
   */
 
-            double focal_length = (lookfrom - lookat).length();
+        //    double focal_length = (lookfrom - lookat).length();
             double theta = degrees_to_radians(vfov);
             double h = tan(theta/2);
-            double viewport_height = 2 * h * focal_length;
+            double viewport_height = 2 * h * focus_dist;
             double viewport_width = viewport_height * (static_cast<double>(image_width)/image_height);
             
             // Calculate u,v,w unit basis vector for camera
@@ -99,8 +99,12 @@ class camera
             pixel_delta_v = viewport_v /image_height;
 
             //Calculate the location of the upper left pixel.
-            vec3 viewport_upper_left = center -(focal_length * w) - viewport_u/2 - viewport_v/2;
+            vec3 viewport_upper_left = center -(focus_dist * w) - viewport_u/2 - viewport_v/2;
             pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
+
+            double defocus_radius = focus_dist * tan(degrees_to_radians(defocus_angle / 2));
+            defocus_disk_u = u * defocus_radius;
+            defocus_disk_v = v * defocus_radius;
         }
 
 
@@ -130,17 +134,22 @@ class camera
         }
 
 
-        ray get_ray(int i, int j)
+        ray get_ray(int i, int j) const
         {
             vec3 pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
             vec3 pixel_sample = pixel_center + pixel_sample_square();
 
-            vec3 ray_origin = center;
+            vec3 ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
             vec3 ray_direction = pixel_sample - ray_origin;
 
             return ray(ray_origin, ray_direction);
         }
 
+        point3 defocus_disk_sample() const
+        {
+            vec3 p = random_in_unit_disk();
+            return center + (p[0] * defocus_disk_u) * (p[1] * defocus_disk_v);
+        }
 
         vec3 pixel_sample_square() const
         {
