@@ -5,6 +5,7 @@
 #include "hittable_list.h"
 #include "material.h"
 #include "sphere.h"
+#include "triangle.h"
 
 
 int colormode = 256;
@@ -28,9 +29,16 @@ int main(void)
     auto material_center = make_shared<lambertian>(color(0.1, 0.2, 0.5));
     auto material_left   = make_shared<dielectric>(1.5);
     auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 0.0);
+    auto material_tri    = make_shared<metal>(color(0.0, 0.2, 0.3), 0.0);
 
     world.add(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
-    world.add(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
+   // world.add(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
+    world.add(make_shared<triangle>(point3( 0.0,    1.0,  -1.5),
+                                    point3(-0.5,    0.0,  -1.0),
+                                    point3( 0.5 ,   0.0,  -1.0), material_tri));
+
+
+
     world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
     world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),  -0.4, material_left));
     world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
@@ -40,10 +48,10 @@ int main(void)
     cam.aspect_ratio = 4.0 / 3.0;
     cam.image_width = 640;
     cam.samples_per_pixel = 50;
-    cam.max_depth = 50;
+    cam.max_depth = 20;
 
     cam.vfov        = 20;
-    cam.lookfrom    = point3(-2, 2, 1);
+    cam.lookfrom    = point3(0.0, 1.5, -7.0);
     cam.lookat      = point3(0, 0, -1);
     cam.vup         = vec3(0, 1, 0);
 
